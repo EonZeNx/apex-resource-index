@@ -15,7 +15,7 @@ Join the largest Just Cause community here: [Just Cause Unlimited](https://disco
 ### Just Cause model renderer
 **Author:** aaronkirkham
 
-**Description:** An application containing a series of tools required for modding Avalanche Engine games.
+**Description:** An application containing a series of tools for modding Avalanche Engine games.
 
 **Link:** [aaronkirkham/jc-model-renderer](https://github.com/aaronkirkham/jc-model-renderer)
 
