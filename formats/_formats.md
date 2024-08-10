@@ -2,4 +2,4 @@
 Information regarding specific file formats.
 
 ## Table of Contents
-- [Patterns](formats/patterns/_patterns.md)
+- [Patterns](patterns/_patterns.md)
