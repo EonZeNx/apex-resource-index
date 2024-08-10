@@ -5,11 +5,11 @@ A repo of resources for [Avalanche Studios Group](https://avalanchestudios.com/)
 Join the largest Just Cause community here: [Just Cause Unlimited](https://discord.gg/just-cause-unlimited-449584016648044555)
 
 ## Table of Contents
-- [Tools](_tools.md)
-- [Formats](_formats.md)
-  - [Patterns](_patterns.md)
-- [Info](_info.md)
-- [Mods](_mods.md)
+- [Tools](tools/_tools.md)
+- [Formats](formats/_formats.md)
+  - [Patterns](formats/patterns/_patterns.md)
+- [Info](info/_info.md)
+- [Mods](mods/_mods.md)
 
 # License
 All information is under the [MIT license](https://choosealicense.com/licenses/mit/)
