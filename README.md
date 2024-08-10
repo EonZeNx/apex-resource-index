@@ -1,4 +1,4 @@
-# Avalanche Resource Index
+# Apex Resource Index
 A repo of resources for [Avalanche Studios Group](https://avalanchestudios.com/) games and [Apex Engine](https://avalanchestudios.com/technology) files.
 
 ### Communities
