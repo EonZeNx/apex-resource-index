@@ -187,7 +187,7 @@ bitfield RbmFlagType {
   SUPPORT_DECALS             : 1;
   SUPPORT_DAMAGE_BLEND       : 1;
   SUPPORT_DIRT               : 1;
-  SUPPORT_UNUSED             : 1;
+  SUPPORT_PALETTE_FILE       : 1;
   SUPPORT_SOFT_TINT          : 1;
   SUPPORT_LAYERED            : 1;
   SUPPORT_OVERLAY            : 1;
