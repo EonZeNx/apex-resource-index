@@ -4,7 +4,6 @@ description: Resources for Avalanche Studio Group games. Tools, formats, info, a
 aliases:
   - home
 draft: false
-tags:
 ---
 Welcome to the Apex Resource Index, a repo of resources for [Avalanche Studios Group](https://avalanchestudios.com/) games and [Apex Engine](https://avalanchestudios.com/technology) files.
 
