@@ -1,7 +1,5 @@
 ---
 title: DECA
-description: Resources for Avalanche Studio Group games. Tools, formats, info, and more
-draft: false
 tags:
   - tool
   - author/kk49

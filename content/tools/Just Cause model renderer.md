@@ -1,7 +1,5 @@
 ---
 title: Just Cause model renderer
-description: Resources for Avalanche Studio Group games. Tools, formats, info, and more
-draft: false
 tags:
   - tool
   - author/aaronkirkham

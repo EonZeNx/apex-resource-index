@@ -1,7 +1,5 @@
 ---
 title: Apex Tools (original)
-description: Resources for Avalanche Studio Group games. Tools, formats, info, and more
-draft: false
 tags:
   - tool
   - author/eonzenx

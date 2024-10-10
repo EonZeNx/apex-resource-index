@@ -1,7 +1,5 @@
 ---
 title: RBM Exporter
-description: Resources for Avalanche Studio Group games. Tools, formats, info, and more
-draft: false
 tags:
   - tool
   - author/brooen1
