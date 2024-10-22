@@ -7,7 +7,7 @@ tags:
 ---
 Tools to extract, modify, and repack Avalanche Studio game files. Generally deprecated for ATL (Apex Tools Launcher).
 
-> [!info]
+> [!warning]
 > Deprecated
 
 ### Link

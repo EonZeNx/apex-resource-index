@@ -1,3 +1,6 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+@use "../../content/.obsidian/snippets/Eon - Lightspeed.css" as eon_lightspeed;
+@use "../../content/.obsidian/snippets/Eon - UI tweaks.css" as eon_ui_tweaks;

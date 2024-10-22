@@ -7,7 +7,7 @@ tags:
 ---
 The original Just Cause 3 tools. Supports various files from Just Cause 3.
 
-> [!info]
+> [!warning]
 > Deprecated
 
 ### Link
