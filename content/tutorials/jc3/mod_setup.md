@@ -14,7 +14,7 @@ tags:
 - Right click it, then click *properties*
 - At the bottom of the popup window below where it says *launch options* paste the below command (including the dot)
 
-**--vfs-fs dropzone --vfs-archive patch_win64 --vfs-archive archives_win64 --vfs-fs .**
+`--vfs-fs dropzone --vfs-archive patch_win64 --vfs-archive archives_win64 --vfs-fs .`
 
 # Step 2: Getting to the game's install-folder
 
