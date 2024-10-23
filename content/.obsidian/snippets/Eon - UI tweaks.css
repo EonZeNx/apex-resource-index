@@ -1,0 +1,276 @@
+/* @settings
+
+name: Eon - UI Tweaks
+id: eon-ui-tweaks
+settings:
+-
+	id: uit-cms-size
+	title: Main content width
+	type: variable-number-slider
+	default: 700
+	format: px
+	min: 500
+	max: 900
+	step: 25
+-
+	id: uit-link-underline
+	title: No underline
+	type: class-toggle
+-
+	id: uit-vault-fontsize
+	title: Vault name font size
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Small
+		value: uit-vault-fontsize-s
+	-
+		label: Medium
+		value: uit-vault-fontsize-m
+	-
+		label: Large
+		value: uit-vault-fontsize-l
+-
+	id: uit-mdc-col
+	title: Adjust meta-data container colours
+	type: class-toggle
+-
+	id: uit-mdc-mb
+	title: Remove meta-data container margin
+	type: class-toggle
+-
+	id: uit-mdc-mb-c
+	title: Remove meta-data container margin (collapsed)
+	type: class-toggle
+-
+	id: uit-mdp-hin
+	title: Hide meta-data container indicator
+	type: class-toggle
+-
+	id: uit-mdp-v-bdr
+	title: Add subtle meta-data property border
+	type: class-toggle
+-
+	id: uit-nh-bdr
+	title: Add subtle nav header border
+	type: class-toggle
+-
+	id: uit-nfc-pad
+	title: Even out nav file container padding
+	type: class-toggle
+-
+	id: uit-font-bweight
+	title: Font bold weight
+	type: class-select
+	allowEmpty: false
+	default: uit-font-bweight-sbold
+	options:
+	-
+		label: Thin
+		value: uit-font-bweight-thin
+	-
+		label: Extra-light
+		value: uit-font-bweight-xlight
+	-
+		label: Light
+		value: uit-font-bweight-light
+	-
+		label: Normal
+		value: uit-font-bweight-norm
+	-
+		label: Medium
+		value: uit-font-bweight-med
+	-
+		label: Semi-bold
+		value: uit-font-bweight-sbold
+	-
+		label: Bold
+		value: uit-font-bweight-bold
+	-
+		label: Extra-bold
+		value: uit-font-bweight-xbold
+	-
+		label: Black
+		value: uit-font-bweight-black
+
+-
+	id: table-group
+	title: Table styles
+	type: heading
+	level: 1
+	collapsed: true
+-
+	id: uit-table-alt
+	title: Use table alt colour
+	type: class-toggle
+- 
+	id: uit-table-alt-col
+	title: Alternate row colour
+	type: variable-themed-color
+	format: hex
+	opacity: true
+	default-light: '#00000004'
+	default-dark: '#FFFFFF04'
+- 
+	id: uit-table-alt-hov-col
+	title: Alternate row hover colour
+	type: variable-themed-color
+	format: hex
+	opacity: true
+	default-light: '#00000004'
+	default-dark: '#FFFFFF04'
+- 
+	id: uit-table-hov-col
+	title: Row hover colour
+	type: variable-themed-color
+	format: hex
+	opacity: true
+	default-light: '#00000008'
+	default-dark: '#FFFFFF08'
+-
+	id: uit-table-col-bold
+	title: Bold the first column
+	type: class-toggle
+*/
+
+:root {
+  --uit-table-hov-col: #00000008;
+  --uit-table-alt-col: #00000004;
+  --uit-table-alt-hov-col: #00000004;
+}
+
+body {
+  --uit-cms-size: 700px;
+  --file-line-width: var(--uit-cms-size);
+  
+  --table-row-background-hover: var(--uit-table-hov-col);
+  --table-row-alt-background-hover: var(--uit-table-alt-hov-col);
+}
+
+.theme-dark {
+  --color-base-00: #000;
+  --color-base-05: #080808;
+  --color-base-10: #111;
+  --color-base-20: #1a1a1a;
+  --color-base-25: #222;
+  --color-base-30: #333;
+  --color-base-35: #363636;
+  --color-base-40: #4a4a4a;
+  --color-base-50: #666;
+  --color-base-60: #999;
+  --color-base-70: #bbb;
+  --color-base-100: #fff;
+
+  --background-primary: var(--color-base-10);
+  --background-primary-alt: var(--color-base-20);
+  --background-secondary: var(--color-base-20);
+  --titlebar-background: var(--color-base-10);
+  --titlebar-background-focused: var(--color-base-25);
+  
+  --uit-table-hov-col: #FFFFFF08;
+  --uit-table-alt-col: #FFFFFF04;
+  --uit-table-alt-hov-col: #FFFFFF04;
+}
+
+.uit-vault-fontsize-s {
+  --vault-name-font-size: var(--font-ui-small);
+}
+.uit-vault-fontsize-m {
+  --vault-name-font-size: var(--font-ui-medium);
+}
+.uit-vault-fontsize-l {
+  --vault-name-font-size: var(--font-ui-large);
+}
+
+/* Remove underlines from links */
+.uit-link-underline :is(a:is(.internal-link, .cm-underline), span:is(.cm-hmd-internal-link)) {
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+  text-decoration: none;
+}
+
+/* Adjust meta-data container colours */
+.uit-mdc-col .metadata-container {
+  --metadata-background: color-mix(in srgb, var(--color-base-10) 66%, var(--color-base-20));
+  --metadata-padding: var(--size-4-2);
+  --metadata-border-radius: var(--size-4-2);
+}
+.uit-mdc-col .metadata-container .collapse-indicator {
+  left: calc(-22px - var(--size-4-2));
+}
+
+/* Reduce margin on meta-data container */
+.uit-mdc-mb .metadata-container {
+  margin-block-end: initial;
+}
+
+/* Remove margin when meta-data container is collapsed */
+.uit-mdc-mb-c .metadata-container.is-collapsed .metadata-properties-heading.is-collapsed {
+  margin-bottom: 0;
+}
+
+/* Hide meta-data container indicator */
+.uit-mdp-hin .metadata-properties-heading .collapse-indicator {
+  display: none;
+}
+
+/* Subtle meta-data value border */
+.uit-mdp-v-bdr .metadata-property-value {
+  border-left: 1px solid color-mix(in srgb, var(--divider-color) 50%, transparent);
+}
+
+/* Subtle nav header bottom border */
+.uit-nh-bdr .nav-header {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* File list padding fix */
+.uit-nfc-pad .nav-files-container {
+  padding: var(--size-4-3) var(--size-4-3) var(--size-4-6);
+}
+
+/* Font bold weight */
+.uit-font-bweight-thin .cm-strong {
+  --bold-weight: var(--font-thin);
+}
+.uit-font-bweight-xthin .cm-strong {
+  --bold-weight: var(--font-extrathin);
+}
+.uit-font-bweight-light .cm-strong {
+  --bold-weight: var(--font-light);
+}
+.uit-font-bweight-norm .cm-strong {
+  --bold-weight: var(--font-normal);
+}
+.uit-font-bweight-med .cm-strong {
+  --bold-weight: var(--font-medium);
+}
+.uit-font-bweight-sbold .cm-strong {
+  --bold-weight: var(--font-semibold);
+}
+.uit-font-bweight-bold .cm-strong {
+  --bold-weight: var(--font-bold);
+}
+.uit-font-bweight-xbold .cm-strong {
+  --bold-weight: var(--font-extrabold);
+}
+.uit-font-bweight-black .cm-strong {
+  --bold-weight: var(--font-black);
+}
+
+/* Table alt colour */
+.uit-table-alt tbody tr:nth-child(odd) td:not(:first-child),
+  body:not(.uit-table-col-bold).uit-table-alt tbody tr:nth-child(odd) td
+{
+  --table-row-alt-background: var(--uit-table-alt-col);
+  background-color: var(--table-row-alt-background);
+}
+
+/* Table first column header */
+.uit-table-col-bold tbody tr td:first-child {
+  font-weight: var(--table-header-weight);
+}

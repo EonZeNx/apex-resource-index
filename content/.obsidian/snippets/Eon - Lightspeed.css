@@ -1,0 +1,754 @@
+/* @settings
+
+name: Eon - Lightspeed
+id: eon-lightspeed
+settings:
+-
+	id: general-group
+	title: General
+	type: heading
+	level: 1
+	collapsed: true
+-
+	id: ls-s1
+	title: Base Size
+	description: Certain styles use this value as a multiplier
+	type: variable-number
+	default: 4
+	format: px
+-
+	id: header-group
+	title: Header styles
+	type: heading
+	level: 1
+	collapsed: true
+-
+	id: header-colour-group
+	title: Colour
+	type: heading
+	level: 2
+	collapsed: true
+-
+	id: ls-hx-col
+	title: Global header colours
+	type: class-toggle
+- 
+	id: ls-h1-col
+	title: Heading 1 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#A9D5FF'
+- 
+	id: ls-h2-col
+	title: Heading 2 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#B9A9FF'
+- 
+	id: ls-h3-col
+	title: Heading 3 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#FFA9EC'
+- 
+	id: ls-h4-col
+	title: Heading 4 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#FFA9A9'
+- 
+	id: ls-h5-col
+	title: Heading 5 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#FFD6A9'
+- 
+	id: ls-h6-col
+	title: Heading 6 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#f5f6f8'
+	default-dark: '#D2EFB1'
+-
+	id: header-align-group
+	title: Align
+	type: heading
+	level: 2
+	collapsed: true
+-
+	id: ls-hx-al
+	title: Global header alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-hx-al-l
+	-
+		label: Center
+		value: ls-hx-al-c
+	-
+		label: Right
+		value: ls-hx-al-r
+-
+	id: ls-h1-al
+	title: Header 1 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h1-al-l
+	-
+		label: Center
+		value: ls-h1-al-c
+	-
+		label: Right
+		value: ls-h1-al-r
+-
+	id: ls-h2-al
+	title: Header 2 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h2-al-l
+	-
+		label: Center
+		value: ls-h2-al-c
+	-
+		label: Right
+		value: ls-h2-al-r
+-
+	id: ls-h3-al
+	title: Header 3 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h3-al-l
+	-
+		label: Center
+		value: ls-h3-al-c
+	-
+		label: Right
+		value: ls-h3-al-r
+-
+	id: ls-h4-al
+	title: Header 4 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h4-al-l
+	-
+		label: Center
+		value: ls-h4-al-c
+	-
+		label: Right
+		value: ls-h4-al-r
+-
+	id: ls-h5-al
+	title: Header 5 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h5-al-l
+	-
+		label: Center
+		value: ls-h5-al-c
+	-
+		label: Right
+		value: ls-h5-al-r
+-
+	id: ls-h6-al
+	title: Header 6 alignment
+	type: class-select
+	allowEmpty: true
+	default: none
+	options:
+	-
+		label: Left
+		value: ls-h6-al-l
+	-
+		label: Center
+		value: ls-h6-al-c
+	-
+		label: Right
+		value: ls-h6-al-r
+-
+	id: directory-group
+	title: Directory styles
+	type: heading
+	level: 1
+	collapsed: true
+-
+	id: ls-dir-contrast
+	title: Directory contrast
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#111'
+	default-dark: '#EEE'
+-
+	id: ls-d1-col
+	title: Directory 1 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#2970FF'
+	default-dark: '#A9D5FF'
+-
+	id: ls-d2-col
+	title: Directory 2 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#00D336'
+	default-dark: '#B9A9FF'
+-
+	id: ls-d3-col
+	title: Directory 3 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#00D336'
+	default-dark: '#FFA9EC'
+-
+	id: ls-d4-col
+	title: Directory 4 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#00D336'
+	default-dark: '#FFA9A9'
+-
+	id: ls-d5-col
+	title: Directory 5 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#00D336'
+	default-dark: '#FFD6A9'
+-
+	id: ls-d6-col
+	title: Directory 6 colour
+	type: variable-themed-color
+	format: hex
+	opacity: false
+	default-light: '#00D336'
+	default-dark: '#D2EFB1'
+*/
+
+
+/* ----- */
+/* Default values */
+:root {
+  --ls-s1: 4px;
+  --ls-s2: calc(2 * var(--ls-s1));
+  --ls-s3: calc(3 * var(--ls-s1));
+  --ls-s4: calc(4 * var(--ls-s1));
+  --ls-s5: calc(5 * var(--ls-s1));
+  --ls-s6: calc(6 * var(--ls-s1));
+  --ls-s7: calc(7 * var(--ls-s1));
+  --ls-s8: calc(8 * var(--ls-s1));
+  
+  --ls-h1-col: #A9D5FF;
+  --ls-h2-col: #B9A9FF;
+  --ls-h3-col: #FFA9EC;
+  --ls-h4-col: #FFA9A9;
+  --ls-h5-col: #FFD6A9;
+  --ls-h6-col: #D2EFB1;
+  
+  --ls-dir-contrast: #EEE;
+  --ls-d1-col: #A9D5FF;
+  --ls-d2-col: #B9A9FF;
+  --ls-d3-col: #FFA9EC;
+  --ls-d4-col: #FFA9A9;
+  --ls-d5-col: #FFD6A9;
+  --ls-d6-col: #D2EFB1;
+}
+.theme-light {
+  --ls-h1-col: #F5F6F8;
+  --ls-h2-col: #00D336;
+  --ls-h3-col: #FFA9EC;
+  --ls-h4-col: #FFA9A9;
+  --ls-h5-col: #FFD6A9;
+  --ls-h6-col: #D2EFB1;
+  
+  --ls-dir-contrast: #111;
+  --ls-d1-col: #F5F6F8;
+  --ls-d2-col: #00D336;
+  --ls-d3-col: #58FF83;
+  --ls-d4-col: #58FF83;
+  --ls-d5-col: #58FF83;
+  --ls-d6-col: #58FF83;
+}
+/* ----- */
+
+
+/* ----- */
+/* Heading styles */
+/* Heading colour */
+:is(.ls-hx-col, .ls-h1-col) :is(h1, .cm-header-1, .HyperMD-header-1) {
+  --h1-color: var(--ls-h1-col);
+  color: var(--ls-h1-col);
+}
+:is(.ls-hx-col, .ls-h2-col) :is(h2, .cm-header-2, .HyperMD-header-2) {
+  --h2-color: var(--ls-h2-col);
+  color: var(--ls-h2-col);
+}
+:is(.ls-hx-col, .ls-h3-col) :is(h3, .cm-header-3, .HyperMD-header-3) {
+  --h3-color: var(--ls-h3-col);
+  color: var(--ls-h3-col);
+}
+:is(.ls-hx-col, .ls-h4-col) :is(h4, .cm-header-4, .HyperMD-header-4) {
+  --h4-color: var(--ls-h4-col);
+  color: var(--ls-h4-col);
+}
+:is(.ls-hx-col, .ls-h5-col) :is(h5, .cm-header-5, .HyperMD-header-5) {
+  --h5-color: var(--ls-h5-col);
+  color: var(--ls-h5-col);
+}
+:is(.ls-hx-col, .ls-h6-col) :is(h6, .cm-header-6, .HyperMD-header-6) {
+  --h6-color: var(--ls-h6-col);
+  color: var(--ls-h6-col);
+}
+
+/* Heading alignment */
+.ls-hx-al-r :is(
+  h1, .HyperMD-header-1,
+  h2, .HyperMD-header-2,
+  h3, .HyperMD-header-3,
+  h4, .HyperMD-header-4,
+  h5, .HyperMD-header-5,
+  h6, .HyperMD-header-6
+),
+.ls-h1-al-r :is(h1, .HyperMD-header-1),
+.ls-h2-al-r :is(h2, .HyperMD-header-2),
+.ls-h3-al-r :is(h3, .HyperMD-header-3),
+.ls-h4-al-r :is(h4, .HyperMD-header-4),
+.ls-h5-al-r :is(h5, .HyperMD-header-5),
+.ls-h6-al-r :is(h6, .HyperMD-header-6)
+{
+  text-align: right;
+}
+.ls-hx-al-c :is(
+  h1, .HyperMD-header-1,
+  h2, .HyperMD-header-2,
+  h3, .HyperMD-header-3,
+  h4, .HyperMD-header-4,
+  h5, .HyperMD-header-5,
+  h6, .HyperMD-header-6
+),
+.ls-h1-al-c :is(h1, .HyperMD-header-1),
+.ls-h2-al-c :is(h2, .HyperMD-header-2),
+.ls-h3-al-c :is(h3, .HyperMD-header-3),
+.ls-h4-al-c :is(h4, .HyperMD-header-4),
+.ls-h5-al-c :is(h5, .HyperMD-header-5),
+.ls-h6-al-c :is(h6, .HyperMD-header-6)
+{
+  text-align: center;
+}
+.ls-hx-al-l :is(
+  h1, .HyperMD-header-1,
+  h2, .HyperMD-header-2,
+  h3, .HyperMD-header-3,
+  h4, .HyperMD-header-4,
+  h5, .HyperMD-header-5,
+  h6, .HyperMD-header-6
+),
+.ls-h1-al-l :is(h1, .HyperMD-header-1),
+.ls-h2-al-l :is(h2, .HyperMD-header-2),
+.ls-h3-al-l :is(h3, .HyperMD-header-3),
+.ls-h4-al-l :is(h4, .HyperMD-header-4),
+.ls-h5-al-l :is(h5, .HyperMD-header-5),
+.ls-h6-al-l :is(h6, .HyperMD-header-6)
+{
+  text-align: left;
+}
+/* ----- */
+
+
+/* ----- */
+/* Image styles */
+/* Image border radius */
+.ls-img-r1 img { border-radius: var(--ls-s1); }
+.ls-img-r2 img { border-radius: var(--ls-s2); }
+.ls-img-r3 img { border-radius: var(--ls-s3); }
+.ls-img-r4 img { border-radius: var(--ls-s4); }
+.ls-img-r5 img { border-radius: var(--ls-s5); }
+.ls-img-r6 img { border-radius: var(--ls-s6); }
+.ls-img-r7 img { border-radius: var(--ls-s7); }
+.ls-img-r8 img { border-radius: var(--ls-s8); }
+/* ----- */
+
+
+/* ----- */
+/* Directory styles */
+/* Start at +2 to apply the first colour to the first directory */
+
+/* Directory 01 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 2) .nav-folder-title {
+  color: var(--ls-d1-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d1-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d1-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d1-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d1-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 2) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d1-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 2) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d1-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d1-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d1-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d1-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 2) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d1-col) 40%,
+    transparent
+  );
+}
+
+/* Directory 02 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 3) .nav-folder-title {
+  color: var(--ls-d2-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d2-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d2-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d2-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d2-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 3) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d2-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 3) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d2-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d2-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d2-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d2-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 3) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d2-col) 40%,
+    transparent
+  );
+}
+
+/* Directory 03 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 4) .nav-folder-title {
+  color: var(--ls-d3-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d3-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d3-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d3-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d3-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 4) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d3-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 4) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d3-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d3-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d3-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d3-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 4) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d3-col) 40%,
+    transparent
+  );
+}
+
+/* Directory 04 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 5) .nav-folder-title {
+  color: var(--ls-d4-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d4-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d4-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d4-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d4-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 5) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d4-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 5) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d4-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d4-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d4-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d4-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 5) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d4-col) 40%,
+    transparent
+  );
+}
+
+/* Directory 05 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 0) .nav-folder-title {
+  color: var(--ls-d5-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d5-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d5-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d5-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d5-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 0) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d5-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 0) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d5-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d5-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d5-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d5-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 0) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d5-col) 40%,
+    transparent
+  );
+}
+
+/* Directory 06 */
+.nav-files-container > div > .nav-folder:nth-child(6n + 1) .nav-folder-title {
+  color: var(--ls-d6-col);
+  --nav-item-color-hover: color-mix(
+    in srgb,
+    var(--ls-d6-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    var(--ls-d6-col) 15%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d6-col) 40%,
+    transparent
+  );
+  --nav-collapse-icon-color: color-mix(in srgb, var(--ls-d6-col) 70%, transparent);
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 1) .nav-folder-title:hover {
+  --nav-collapse-icon-color: color-mix(
+    in srgb,
+    var(--ls-d6-col) 90%,
+    var(--ls-dir-contrast)
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 1) .tree-item-children :is(.nav-folder, .nav-file) .nav-file-title {
+  color: color-mix(
+    in srgb,
+    var(--ls-d6-col) 30%,
+    var(--ls-dir-contrast)
+  );
+  --nav-item-background-hover: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--ls-d6-col) 50%, #FFF) 10%,
+    transparent
+  );
+  --background-modifier-border-focus: color-mix(
+    in srgb,
+    var(--ls-d6-col) 40%,
+    transparent
+  );
+  --nav-item-background-active: color-mix(
+    in srgb,
+    var(--ls-d6-col) 15%,
+    transparent
+  );
+}
+.nav-files-container > div > .nav-folder:nth-child(6n + 1) > .nav-folder-children {
+  --nav-indentation-guide-color: color-mix(
+    in srgb,
+    var(--ls-d6-col) 40%,
+    transparent
+  );
+}
+/* ----- */

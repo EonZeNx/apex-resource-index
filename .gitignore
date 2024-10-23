@@ -4,13 +4,14 @@ node_modules
 public
 prof
 tsconfig.tsbuildinfo
-.obsidian
 .quartz-cache
 private/
 .replit
 replit.nix
 
-.idea/
-.obsidian/
+.idea/*
 
-content/project/
+content/.obsidian/*
+!content/.obsidian/snippets/
+
+content/project/*
