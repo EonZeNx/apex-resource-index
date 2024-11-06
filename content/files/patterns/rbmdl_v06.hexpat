@@ -230,6 +230,19 @@ struct RbmMesh5 {
   TVec tVec;
 };
 
+struct RbmMesh6 {
+  TTypes::Vector3<u16> Position;
+  
+  u16 Unspecified;
+};
+
+struct RbmMesh7 {
+  TTypes::Vector3<u16> Position;
+  
+  u16 Unspecified;
+  TVec tVec;
+};
+
 struct RbmMeshData {
   FVec2 UV1;
   FVec2 UV2;
@@ -268,9 +281,14 @@ struct RbmMeshData3 {
   float Color;
 };
 
+struct RbmMeshData4 {
+  u32 UV1;
+  u32 UV2;
+};
+
 enum RbmType : u32 {
   // VegetationFoliage = 0x3d79884c6,
-  // FoliageBark = 0xb1f9133d,
+  FoliageBark2 = 0xb1f9133d,
   // GeneralSimple = 0x2ee0f4a9,
   WaterHull = 0xf99c72a1,
   // SimpleGeometry = 0x90fe086c,
@@ -279,10 +297,10 @@ enum RbmType : u32 {
   // Layered = 0xc7021ee3,
   // Landmark = 0x3b630e6d,
   GeneralMK3 = 0x2cec5ad5,
-  // General6 = 0xa7583b2b,
+  General6 = 0xa7583b2b,
   CarLight = 0xdb948bf1,
   CarPaint14 = 0x483304d6,
-  // General3 = 0x04894ecd,
+  General3 = 0x04894ecd,
   // Character9 = 0x9d6e332a,
   Character6 = 0x626f5e3b,
   // Road = 0x566dce92,
@@ -439,7 +457,9 @@ struct RbmModelDataCarLight {
 };
 
 struct RbmModelDataGeneralMk3 {
-  padding [73];
+  padding [41];
+  float Scale;
+  padding [28];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
@@ -462,6 +482,51 @@ struct RbmModelDataGeneralMk3 {
   RbmFace FaceIndicies [FaceCount/3];
   u32 endstring;
 };
+
+struct RbmModelDataGeneral6 {
+  padding [13];
+  float Scale;
+  padding [52];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh6 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData3 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
+struct RbmModelDataGeneral3 {
+  padding [293];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh6 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData3 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
+struct RbmModelDataFoliageBark2 {
+  padding [205];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh7 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData4 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
 
 struct RbmModelDataCharacter6 {
   padding [57];
@@ -506,8 +571,21 @@ struct RbmModel {
   if (RenderBlockType == RbmType::GeneralMK3) {
     RbmModelDataGeneralMk3 GeneralMk3;
   }
+  
   if (RenderBlockType == RbmType::Character6) {
   RbmModelDataCharacter6 Character6;
+  }
+  
+  if (RenderBlockType == RbmType::General6) {
+    RbmModelDataGeneral6 General6;
+  }
+  
+  if (RenderBlockType == RbmType::General3) {
+    RbmModelDataGeneral3 General3;
+  }
+  
+  if (RenderBlockType == RbmType::FoliageBark2) {
+  RbmModelDataFoliageBark2 FoliageBark2;
   }
 };
 
@@ -515,7 +593,7 @@ struct RbmFile
 {
   Header Header;
   RbmModel RenderBlocks [Header.RenderBlockCount];
-  ///RbmModel array [1];
+  //RbmModel array [7];
    
 };
 
