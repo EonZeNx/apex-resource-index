@@ -3,8 +3,10 @@
 
 import std.string;
 
-import core.TTypes;
-import core.CTypes;
+// Extras > Settings > Folders > Add > MY_FOLDER > Confirm
+// Should look like: MY_FOLDER/patterns/*.hexpat
+import TTypes;
+import CTypes;
 
 #pragma array_limit 10000000000000000
 #pragma pattern_limit 10000000000000000
@@ -18,6 +20,7 @@ using FVec4 = CTypes::FVector4;
 using NVec = CTypes::NormalTangent;
 using DVec = TTypes::Vector4<u16>;
 using TVec = CTypes::NormalTangent;
+using BVec = TTypes::Vector4<u8>;
 
 using RbmBox = CTypes::FBoxR;
 
@@ -102,12 +105,90 @@ struct MaterialCarLight {
   padding [1028]; // could be control point remap table?
 };
 
+struct MaterialGeneralMk3 {
+    float NormalStrength;
+    float Reflectivity_1;
+    float Roughness_1;
+    float DiffuseWrap_1;
+    float Emissive_1;
+    float Transmission_1;
+    float ClearCoat_1;
+    float Roughness_2;
+    float DiffuseWrap_2;
+    float Emissive_2;
+    float Transmission_2;
+    float Reflectivity_2;
+    float ClearCoat_2;
+    float Roughness_3;
+    float DiffuseWrap_3;
+    float Emissive_3;
+    float Transmission_3;
+    float Reflectivity_3;
+    float ClearCoat_3;
+    float Roughness_4;
+    float DiffuseWrap_4;
+    float Emissive_4;
+    float Transmission_4;
+    float Reflectivity_4;
+    float ClearCoat_4;
+    float LayeredHeightMapUVScale;
+    float LayeredUVScale;
+    float LayeredHeight1Influence;
+    float LayeredHeight2Influence;
+    float LayeredHeightMapInfluence;
+    float LayeredMaskInfluence;
+    float LayeredShift;
+    float LayeredRoughness;
+    float LayeredDiffuseWrap;
+    float LayeredEmissive;
+    float LayeredTransmission;
+    float LayeredReflectivity;
+    float LayeredClearCoat;
+    float DecalBlend;
+    float DecalBlendNormal;
+    float DecalReflectivity;
+    float DecalRoughness;
+    float DecalDiffuseWrap;
+    float DecalEmissive;
+    float DecalTransmission;
+    float DecalClearCoat;
+    float OverlayHeightInfluence;
+    float OverlayHeightMapInfluence;
+    float OverlayMaskInfluence;
+    float OverlayShift;
+    float OverlayColorR;
+    float OverlayColorG;
+    float OverlayColorB;
+    float OverlayBrightness;
+    float OverlayGloss;
+    float OverlayMetallic;
+    float OverlayReflectivity;
+    float OverlayRoughness;
+    float OverlayDiffuseWrap;
+    float OverlayEmissive;
+    float OverlayTransmission;
+    float OverlayClearCoat;
+    float DamageReflectivity;
+    float DamageRoughness;
+    float DamageDiffuseWrap;
+    float DamageEmissive;
+    float DamageTransmission;
+    float DamageHeightInfluence;
+    float DamageMaskInfluence;
+    float DamageClearCoat;
+};
+
 struct MeshDeform {
   FVec3 Position;
   
   NVec nVec;
   DVec dVec;
 };
+
+struct Remap {
+ u16 RemapPoint;
+};
+
 
 struct RbmMesh2 {
   FVec3 Position;
@@ -132,6 +213,21 @@ struct RbmMesh4 {
   TTypes::Vector3<u16> Position;
   
   u16 BoneIndexorUnspecified;
+  
+  if (parent.FlagType.IS_SKINNED) {    
+  u32 BoneWeight;
+    u32 BoneIndex;
+  }  
+};
+
+struct RbmMesh5 {
+  TTypes::Vector3<u16> Position;
+  
+  u16 Unspecified;
+  BVec bVec[2];
+  u16 U1;
+  u16 V1;
+  TVec tVec;
 };
 
 struct RbmMeshData {
@@ -162,6 +258,16 @@ struct RbmMeshData2 {
   float Color;
 };
 
+struct RbmMeshData3 {
+  u32 UV1;
+  u32 UV2;
+  
+  NVec nVec;
+  TVec tVec;
+  
+  float Color;
+};
+
 enum RbmType : u32 {
   // VegetationFoliage = 0x3d79884c6,
   // FoliageBark = 0xb1f9133d,
@@ -178,16 +284,16 @@ enum RbmType : u32 {
   CarPaint14 = 0x483304d6,
   // General3 = 0x04894ecd,
   // Character9 = 0x9d6e332a,
-  // Character6 = 0x626f5e3b,
+  Character6 = 0x626f5e3b,
   // Road = 0x566dce92,
   // GeneralSimple3 = 0x35bf53d5,
 };
 
-bitfield RbmFlagType {
+bitfield CarPaintFlagType {
   SUPPORT_DECALS             : 1;
   SUPPORT_DAMAGE_BLEND       : 1;
   SUPPORT_DIRT               : 1;
-  SUPPORT_PALETTE_FILE       : 1;
+  SUPPORT_PALETTE            : 1;
   SUPPORT_SOFT_TINT          : 1;
   SUPPORT_LAYERED            : 1;
   SUPPORT_OVERLAY            : 1;
@@ -197,6 +303,22 @@ bitfield RbmFlagType {
   TRANSPARENCY_UNUSED        : 2;  
   IS_DEFORM                  : 1;
   IS_SKINNED                 : 1;
+};
+
+bitfield GeneralMk3FlagType {
+  BACKFACE_CULLING           : 1;
+  TRANSPARENCY_ALPHABLENDING : 1;
+  TRANSPARENCY_ALPHATESTING  : 1;
+  DYNAMIC_EMISSIVE           : 1;
+  WORLD_SPACE_NORMALS        : 1;
+  IS_SKINNED                 : 1;
+  UNKNOWN                    : 1;
+  USE_LAYERED                : 1;
+  USE_OVERLAY                : 1;
+  USE_DECAL                  : 1;
+  USE_DAMAGE                 : 4;     
+  ANISOTROPIC_FILTERING      : 1;
+  DESTRUCTION                : 1;
 };
 
 struct ControlPointRemap {
@@ -225,7 +347,7 @@ struct RbmModelDataCarPaint14 {
   padding [1];
   
   u32 Flag[[no_unique_address]];
-  RbmFlagType FlagType;
+  CarPaintFlagType FlagType;
   
   padding [6];
   MaterialCarPaint MaterialData;
@@ -317,19 +439,44 @@ struct RbmModelDataCarLight {
 };
 
 struct RbmModelDataGeneralMk3 {
-  padding [385];
-  // u32 Flag[[no_unique_address]];
-  // RbmFlagType FlagType;
-  // generalmk3material MaterialData;
+  padding [73];
+  u32 Flag[[no_unique_address]];
+  GeneralMk3FlagType FlagType;
+  padding [30];
+  MaterialGeneralMk3 MaterialData;
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
   u32 VertCount;
   RbmMesh4 Vertices [VertCount];
   u32 VertCount2;
-  RbmMeshData2 MeshData [VertCount2];
+  RbmMeshData3 MeshData [VertCount2];
+  if (FlagType.DESTRUCTION) {
+      padding[4];
+      u32 FaceCount;
+      padding[4];
+      u32 RemapCount;
+      Remap Remaps [RemapCount];
+  }
   u32 FaceCount;
   RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
+struct RbmModelDataCharacter6 {
+  padding [57];
+  // u32 Flag[[no_unique_address]];
+  // RbmFlagType FlagType;
+  // character6material MaterialData;
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh5 Vertices [VertCount];
+  padding[4];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  padding[54];
   u32 endstring;
 };
 
@@ -359,13 +506,17 @@ struct RbmModel {
   if (RenderBlockType == RbmType::GeneralMK3) {
     RbmModelDataGeneralMk3 GeneralMk3;
   }
+  if (RenderBlockType == RbmType::Character6) {
+  RbmModelDataCharacter6 Character6;
+  }
 };
 
 struct RbmFile
 {
   Header Header;
   RbmModel RenderBlocks [Header.RenderBlockCount];
-  // RbmModel array [3];
+  ///RbmModel array [1];
+   
 };
 
 RbmFile File @ 0x00;
