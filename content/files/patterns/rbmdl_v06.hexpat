@@ -286,6 +286,11 @@ struct RbmMeshData4 {
   u32 UV2;
 };
 
+struct RbmMeshData5 {
+  u32 UV1;
+  float Color;
+};
+
 enum RbmType : u32 {
   // VegetationFoliage = 0x3d79884c6,
   FoliageBark2 = 0xb1f9133d,
@@ -294,8 +299,8 @@ enum RbmType : u32 {
   // SimpleGeometry = 0x90fe086c,
   BavariumShield = 0xa5d24ccd,
   Window = 0x5b2003f6,
-  // Layered = 0xc7021ee3,
-  // Landmark = 0x3b630e6d,
+  Layered = 0xc7021ee3,
+  Landmark = 0x3b630e6d,
   GeneralMK3 = 0x2cec5ad5,
   General6 = 0xa7583b2b,
   CarLight = 0xdb948bf1,
@@ -513,6 +518,34 @@ struct RbmModelDataGeneral3 {
   u32 endstring;
 };
 
+struct RbmModelDataLayered {
+  padding [145];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh6 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData3 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
+struct RbmModelDataLandmark {
+  padding [89];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh6 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData5 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
 struct RbmModelDataFoliageBark2 {
   padding [205];
   u32 FilePathSlotCount;
@@ -526,7 +559,6 @@ struct RbmModelDataFoliageBark2 {
   RbmFace FaceIndicies [FaceCount/3];
   u32 endstring;
 };
-
 
 struct RbmModelDataCharacter6 {
   padding [57];
@@ -587,13 +619,21 @@ struct RbmModel {
   if (RenderBlockType == RbmType::FoliageBark2) {
   RbmModelDataFoliageBark2 FoliageBark2;
   }
+  
+  if (RenderBlockType == RbmType::Layered) {
+  RbmModelDataLayered Layered;
+  }
+  
+  if (RenderBlockType == RbmType::Landmark) {
+  RbmModelDataLandmark Landmark;
+  }
 };
 
 struct RbmFile
 {
   Header Header;
   RbmModel RenderBlocks [Header.RenderBlockCount];
-  //RbmModel array [7];
+  //RbmModel array [3];
    
 };
 
