@@ -464,7 +464,9 @@ struct RbmModelDataCarLight {
 struct RbmModelDataGeneralMk3 {
   padding [41];
   float Scale;
-  padding [28];
+  float UV1Extent[2];
+  float UV2Extent[2];
+  padding [12];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
