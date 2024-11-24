@@ -344,6 +344,19 @@ bitfield GeneralMk3FlagType {
   DESTRUCTION                : 1;
 };
 
+bitfield General6FlagType {
+  BACKFACE_CULLING           : 1;
+  TRANSPARENCY_ALPHABLENDING : 1;
+  TRANSPARENCY_ALPHATESTING  : 1;
+};
+
+bitfield General3FlagType {
+  BACKFACE_CULLING           : 1;
+  TRANSPARENCY_ALPHABLENDING : 1;
+  SUPPORT_DECALS  : 1;
+  SUPPORT_OVERLAY  : 1; // unused i think
+};
+
 struct ControlPointRemap {
   u32 controlpointremaptest[[no_unique_address]];
   
@@ -464,9 +477,7 @@ struct RbmModelDataCarLight {
 struct RbmModelDataGeneralMk3 {
   padding [41];
   float Scale;
-  float UV1Extent[2];
-  float UV2Extent[2];
-  padding [12];
+  padding [28];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
@@ -493,7 +504,12 @@ struct RbmModelDataGeneralMk3 {
 struct RbmModelDataGeneral6 {
   padding [13];
   float Scale;
-  padding [52];
+  float UV1Extent[2];
+  float UV2Extent[2];
+  padding [8];
+  u32 Flag[[no_unique_address]];
+  General6FlagType FlagType;
+  padding [27];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -507,7 +523,14 @@ struct RbmModelDataGeneral6 {
 };
 
 struct RbmModelDataGeneral3 {
-  padding [293];
+  padding [261];
+  float Scale;
+  float UV1Extent[2];
+  float UV2Extent[2];
+  padding [8];
+  u32 Flag[[no_unique_address]];
+  General3FlagType FlagType;
+  padding [3];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -635,7 +658,7 @@ struct RbmFile
 {
   Header Header;
   RbmModel RenderBlocks [Header.RenderBlockCount];
-  //RbmModel array [3];
+  //RbmModel array [7];
    
 };
 
