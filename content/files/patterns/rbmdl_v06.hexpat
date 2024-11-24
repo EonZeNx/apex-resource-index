@@ -243,6 +243,13 @@ struct RbmMesh7 {
   TVec tVec;
 };
 
+struct RbmMesh8 {
+  TTypes::Vector3<u16> Position;
+  
+  u16 Unspecified;
+  u32 UV1;
+};
+
 struct RbmMeshData {
   FVec2 UV1;
   FVec2 UV2;
@@ -291,8 +298,13 @@ struct RbmMeshData5 {
   float Color;
 };
 
+struct RbmMeshData6 {
+  u32 UV2;
+  u32 TanSpace;
+};
+
 enum RbmType : u32 {
-  // VegetationFoliage = 0x3d79884c6,
+  VegetationFoliage = 0xd79884c6,
   FoliageBark2 = 0xb1f9133d,
   // GeneralSimple = 0x2ee0f4a9,
   WaterHull = 0xf99c72a1,
@@ -602,6 +614,20 @@ struct RbmModelDataCharacter6 {
   u32 endstring;
 };
 
+struct RbmModelDataVegetationFoliage {
+  padding [97];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh8 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData5 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
 struct RbmModel {
   RbmType RenderBlockType;
     
@@ -651,6 +677,14 @@ struct RbmModel {
   
   if (RenderBlockType == RbmType::Landmark) {
   RbmModelDataLandmark Landmark;
+  }
+  
+  if (RenderBlockType == RbmType::VegetationFoliage) {
+  RbmModelDataVegetationFoliage VegetationFoliage;
+  }
+  
+  else {
+  break;
   }
 };
 
