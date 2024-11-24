@@ -5,8 +5,8 @@ import std.string;
 
 // Extras > Settings > Folders > Add > MY_FOLDER > Confirm
 // Should look like: MY_FOLDER/patterns/*.hexpat
-import TTypes;
-import CTypes;
+import core.TTypes;
+import core.CTypes;
 
 #pragma array_limit 10000000000000000
 #pragma pattern_limit 10000000000000000
