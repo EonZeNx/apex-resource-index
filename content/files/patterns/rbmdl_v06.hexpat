@@ -489,7 +489,9 @@ struct RbmModelDataCarLight {
 struct RbmModelDataGeneralMk3 {
   padding [41];
   float Scale;
-  padding [28];
+  float UV1Scale[2];
+  float UV2Scale[2];
+  padding [12];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
@@ -584,9 +586,7 @@ struct RbmModelDataLandmark {
 };
 
 struct RbmModelDataFoliageBark2 {
-  padding [1];
-  float Scale;
-  padding [200];
+  padding [205];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -637,7 +637,7 @@ struct RbmModelDataVegetationFoliage {
   u32 VertCount;
   RbmMesh8 Vertices [VertCount];
   u32 VertCount2;
-  RbmMeshData5 MeshData [VertCount2];
+  RbmMeshData6 MeshData [VertCount2];
   u32 FaceCount;
   RbmFace FaceIndicies [FaceCount/3];
   u32 endstring;
@@ -698,9 +698,6 @@ struct RbmModel {
   RbmModelDataVegetationFoliage VegetationFoliage;
   }
   
-  else {
-  break;
-  }
 };
 
 struct RbmFile
