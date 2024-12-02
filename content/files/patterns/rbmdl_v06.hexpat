@@ -617,9 +617,20 @@ struct RbmModelDataCharacter6 {
 };
 
 struct RbmModelDataVegetationFoliage {
-  padding [45];
+  padding[1];
+  float OffsetWorld[4];
+  float OffsetViewProjection[4];
+  float Opacity;
+  float InstanceOffset;
+  float OneOverSubpixelDetailFadeRange;
   float Scale;
-  padding [48];
+  float UV1Scale[2];
+  float UV2Scale[2];
+  float UseInteractionDisp;
+  float UseInteractionFlattening;
+  float UseCharacterInteractionFlattening;
+  float SphereNormalStrength;
+  padding[16];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
