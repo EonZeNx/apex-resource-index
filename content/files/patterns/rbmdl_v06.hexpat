@@ -584,7 +584,9 @@ struct RbmModelDataLandmark {
 };
 
 struct RbmModelDataFoliageBark2 {
-  padding [205];
+  padding [1];
+  float Scale;
+  padding [200];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -615,7 +617,9 @@ struct RbmModelDataCharacter6 {
 };
 
 struct RbmModelDataVegetationFoliage {
-  padding [97];
+  padding [45];
+  float Scale;
+  padding [48];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
