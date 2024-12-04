@@ -365,8 +365,18 @@ bitfield General6FlagType {
 bitfield General3FlagType {
   BACKFACE_CULLING           : 1;
   TRANSPARENCY_ALPHABLENDING : 1;
-  SUPPORT_DECALS  : 1;
-  SUPPORT_OVERLAY  : 1; // unused i think
+  SUPPORT_DECALS             : 1;
+  SUPPORT_OVERLAY            : 1; // unused i think
+};
+
+bitfield FoliageBark2FlagType {
+  Unk1                       : 1;
+  Unk2                       : 1;
+  Unk3                       : 1;
+  Unk4                       : 1; 
+  Unk5                       : 1;
+  Unk6                       : 1;
+  DONT_USE_LAYERED           : 1;
 };
 
 struct ControlPointRemap {
@@ -489,9 +499,7 @@ struct RbmModelDataCarLight {
 struct RbmModelDataGeneralMk3 {
   padding [41];
   float Scale;
-  float UV1Scale[2];
-  float UV2Scale[2];
-  padding [12];
+  padding [28];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
@@ -586,7 +594,13 @@ struct RbmModelDataLandmark {
 };
 
 struct RbmModelDataFoliageBark2 {
-  padding [205];
+  padding [1];
+  float Scale;
+  float UV1Extent[2];
+  float UV2Extent[2];  
+  padding [75];
+  FoliageBark2FlagType FlagType;
+  padding [108];  
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -637,7 +651,7 @@ struct RbmModelDataVegetationFoliage {
   u32 VertCount;
   RbmMesh8 Vertices [VertCount];
   u32 VertCount2;
-  RbmMeshData6 MeshData [VertCount2];
+  RbmMeshData5 MeshData [VertCount2];
   u32 FaceCount;
   RbmFace FaceIndicies [FaceCount/3];
   u32 endstring;
@@ -697,7 +711,6 @@ struct RbmModel {
   if (RenderBlockType == RbmType::VegetationFoliage) {
   RbmModelDataVegetationFoliage VegetationFoliage;
   }
-  
 };
 
 struct RbmFile
