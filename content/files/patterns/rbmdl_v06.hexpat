@@ -220,16 +220,6 @@ struct RbmMesh4 {
   }  
 };
 
-struct RbmMesh5 {
-  TTypes::Vector3<u16> Position;
-  
-  u16 Unspecified;
-  BVec bVec[2];
-  u16 U1;
-  u16 V1;
-  TVec tVec;
-};
-
 struct RbmMesh6 {
   TTypes::Vector3<u16> Position;
   
@@ -258,6 +248,9 @@ struct RbmMesh9 {
   u32 BoneIndex;
   u32 UV1;
   TVec tVec;
+  if (parent.FlagType.USE_WRINlKE_MAP) {    
+    padding [4];
+  }
 };
 
 struct RbmMeshData {
@@ -328,10 +321,10 @@ enum RbmType : u32 {
   CarLight = 0xdb948bf1,
   CarPaint14 = 0x483304d6,
   General3 = 0x04894ecd,
-  Character9 = 0x9d6e332a,
-  Character6 = 0x626f5e3b,
+  Character9 = 0x9d6e332a, //clothes
+  Character6 = 0x626f5e3b, //skin
   // Road = 0x566dce92,
-  // GeneralSimple3 = 0x35bf53d5,
+  GeneralSimple3 = 0x35bf53d5,
 };
 
 bitfield CarPaintFlagType {
@@ -389,6 +382,26 @@ bitfield GeneralSimpleFlagType {
   TRANSPARENCY_ALPHABLENDING : 1;
   DYNAMIC_EMISSIVE           : 1;
 };
+
+bitfield Character9FlagType {
+  DISABLE_BACKFACE_CULLING   : 1;
+  EIGHT_BONES                : 1;
+  USE_ALPHA_MASK             : 1;
+  TRANSPARENCY_ALPHABLENDING : 1;
+  USE_FEATURE_MAP            : 1;
+  USE_WRINlKE_MAP            : 1;
+  USE_CAMERA_LIGHTING        : 1;
+  USE_EYE_REFLECTION         : 1; 
+};
+
+bitfield Character6FlagType {
+  DISABLE_BACKFACE_CULLING   : 1;
+  USE_WRINlKE_MAP            : 1;
+  EIGHT_BONES                : 1;
+  USE_FEATURE_MAP            : 1;
+  USE_ALPHA_MASK             : 1;
+};
+
 
 struct ControlPointRemap {
   u32 controlpointremaptest[[no_unique_address]];
@@ -510,7 +523,9 @@ struct RbmModelDataCarLight {
 struct RbmModelDataGeneralMk3 {
   padding [41];
   float Scale;
-  padding [28];
+  float UV1Extent[2];
+  float UV2Extent[2];
+  padding [12];
   u32 Flag[[no_unique_address]];
   GeneralMk3FlagType FlagType;
   padding [30];
@@ -625,13 +640,17 @@ struct RbmModelDataFoliageBark2 {
 };
 
 struct RbmModelDataCharacter6 {
-  padding [57];
-
+  padding [1];
+  Character6FlagType FlagType;
+  padding [3];
+  float Scale;
+  float UVDetailExtent[2]; //duplicate uv1, multiply by this number, make that uv2  
+  padding [40];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
   u32 VertCount;
-  RbmMesh5 Vertices [VertCount];
+  RbmMesh9 Vertices [VertCount];
   padding[12];
   u32 UNK;
   u16 UNKdata[UNK]; //probably bone index things
@@ -687,8 +706,31 @@ struct RbmModelDataGeneralSimple {
   u32 endstring;
 };
 
-struct RbmModelDataCharacter9 {
+struct RbmModelDataGeneralSimple3 {
   padding [109];
+  float Scale;
+  float UV1Extent[2];
+  float UV2Extent[2];  
+  padding [36]; 
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16]; 
+  u32 VertCount;
+  RbmMesh6 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData3 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
+struct RbmModelDataCharacter9 {
+  padding [1];
+  Character9FlagType FlagType;
+  padding [3];
+  float Scale;
+  float UVDetailExtent[2]; //duplicate uv1, multiply by this number, make that uv2  
+  padding [92];
   u32 FilePathSlotCount;
   Filepath Filepaths [FilePathSlotCount];
   padding [16];   
@@ -764,6 +806,10 @@ struct RbmModel {
   if (RenderBlockType == RbmType::Character9) {
   RbmModelDataCharacter9 Character9;
   }
+  
+  if (RenderBlockType == RbmType::GeneralSimple3) {
+  RbmModelDataGeneralSimple3 GeneralSimple3;
+  } 
 };
 
 struct RbmFile
@@ -774,4 +820,4 @@ struct RbmFile
    
 };
 
-RbmFile File @ 0x00;
+RbmFile File @ 0x0;
