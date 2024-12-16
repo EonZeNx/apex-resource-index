@@ -253,6 +253,16 @@ struct RbmMesh9 {
   }
 };
 
+struct RbmMesh10 {
+  TTypes::Vector3<u16> Position;
+  
+  u16 Unspecified;
+
+  if (parent.FlagType.IS_SKINNED) {    
+    padding [8];
+  }
+};
+
 struct RbmMeshData {
   FVec2 UV1;
   FVec2 UV2;
@@ -323,7 +333,7 @@ enum RbmType : u32 {
   General3 = 0x04894ecd,
   Character9 = 0x9d6e332a, //clothes
   Character6 = 0x626f5e3b, //skin
-  // Road = 0x566dce92,
+  Road = 0x566dce92,
   GeneralSimple3 = 0x35bf53d5,
 };
 
@@ -400,6 +410,10 @@ bitfield Character6FlagType {
   EIGHT_BONES                : 1;
   USE_FEATURE_MAP            : 1;
   USE_ALPHA_MASK             : 1;
+};
+bitfield RoadFlagType {
+  padding                    : 5;
+  IS_SKINNED                 : 1;
 };
 
 
@@ -744,6 +758,25 @@ struct RbmModelDataCharacter9 {
   u32 endstring;
 };
 
+struct RbmModelDataRoad {
+  padding [9];
+  float Scale;
+  float UV1Extent[2];
+  float UV2Extent[2];
+  RoadFlagType FlagType;  
+  padding [223];
+  u32 FilePathSlotCount;
+  Filepath Filepaths [FilePathSlotCount];
+  padding [16];   
+  u32 VertCount;
+  RbmMesh10 Vertices [VertCount];
+  u32 VertCount2;
+  RbmMeshData3 MeshData [VertCount2];
+  u32 FaceCount;
+  RbmFace FaceIndicies [FaceCount/3];
+  u32 endstring;
+};
+
 struct RbmModel {
   RbmType RenderBlockType;
     
@@ -809,6 +842,10 @@ struct RbmModel {
   
   if (RenderBlockType == RbmType::GeneralSimple3) {
   RbmModelDataGeneralSimple3 GeneralSimple3;
+  } 
+  
+  if (RenderBlockType == RbmType::Road) {
+  RbmModelDataRoad Road;
   } 
 };
 
